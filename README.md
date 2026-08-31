@@ -5,11 +5,11 @@
 
 ### 项目结构
 git-practice/
-├── homepage/       
+├─ homepage/       
 │   └── index.html
-├── theme-page/     
+├─ theme-page/     
 │   └── index.html
-├── .gitignore    
+├──.gitignore    
 └── README.md      
 
 
