@@ -25,6 +25,8 @@
         <section id="form">
             <h2>调研表单</h2>
            <form action="#" method="get">
+            <fieldset>
+                <legend>基本信息</legend>
                 <p>
                   <label for="name">名字</label>  
                   <input type="text"  id="name" name="name" placeholder="请输入您的姓名" required>
@@ -56,6 +58,9 @@
                         <input type="radio" name="experience" value="notwill"> 未参加，也不打算参加
                     </label>
                 </p>
+                </fieldset>
+                <fieldset>
+                <legend>AI使用的情况</legend>
                 <p>AI使用的阶段（可多选）</p>
                 <p>
                     <label><input type="checkbox" name="stage" value="选题"> 选题</label>
@@ -85,10 +90,11 @@
                 <label for="advice">具体建议</label><br>
                 <textarea id="advice" name="advice" rows="4" maxlength="200" placeholder="说点什么"></textarea>
                </p>
+               </fieldset>
                <p>
                     <button type="submit">提交调研</button>
                </p>
-
+              
             </form>
         </section>
     </main> 
