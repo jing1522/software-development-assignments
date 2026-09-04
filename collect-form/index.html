@@ -24,6 +24,72 @@
         </section>
         <section id="form">
             <h2>调研表单</h2>
+           <form action="#" method="get">
+                <p>
+                  <label for="name">名字</label>  
+                  <input type="text"  id="name" name="name" placeholder="请输入您的姓名" required>
+                </p>
+                <p>
+                    <label for="mail">邮箱</label>
+                    <input type="email" id="mail" name="mail" required>
+                </p>
+                <p>
+                    <label for="grade">年级</label>
+                    <select id="grade" name="grade" required>
+                        <option value="">请选择</option>
+                        <option value="1">大一</option>
+                        <option value="2">大二</option>
+                        <option value="3">大三</option>
+                        <option value="4">大四</option>
+                        <option value="5">研究生</option>
+                    </select>
+                </p>
+                <p>参赛经历</p>
+                <p>
+                    <label>
+                        <input type="radio" name="experience" value="yes"> 参加过
+                    </label>
+                    <label>
+                        <input type="radio" name="experience" value="will"> 未参加，但打算参加
+                    </label>
+                     <label>
+                        <input type="radio" name="experience" value="notwill"> 未参加，也不打算参加
+                    </label>
+                </p>
+                <p>AI使用的阶段</p>
+                <p>
+                    <label><input type="checkbox" name="stage" value="选题"> 选题</label>
+                    <label><input type="checkbox" name="stage" value="数据处理"> 数据处理</label>
+                    <label><input type="checkbox" name="stage" value="建模"> 建模</label>
+                    <label><input type="checkbox" name="stage" value="论文写作"> 论文写作</label>
+                    <label><input type="checkbox" name="stage" value="其他"> 其他</label>
+                </p>
+               <p>
+                    <label for="ai">常用AI</label>
+                    <select id="ai" name="ai" required>
+                        <option value="">请选择</option>
+                        <option value="chatgpt">ChatGPT</option>
+                        <option value="kimi">Kimi</option>
+                        <option value="deepseek">DeepSeek</option>
+                        <option value="其他">其他</option>
+                    </select>
+               </p>
+           
+               <p>你主要使用付费AI工具还是免费AI工具</p>
+               <p>
+                <label><input type="radio" name="ai_payment" value="免费" checked> 免费</label>
+                <label><input type="radio" name="ai_payment" value="付费"> 付费</label>
+                <label><input type="radio" name="ai_payment" value="两者都用"> 两者都用</label>
+               </p>
+               <p>
+                <label for="advice">具体建议</label><br>
+                <textarea id="advice" name="advice" rows="4" maxlength="200" placeholder="说点什么"></textarea>
+               </p>
+               <p>
+                    <button type="submit">提交调研</button>
+               </p>
+
+            </form>
         </section>
     </main> 
     <footer>
