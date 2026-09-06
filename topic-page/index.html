@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>数模AI使用指南</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/style2.css">
 </head>
 <body>
@@ -15,46 +16,82 @@
             </nav>
         </div>
     </header>
-    <section id="process">
+    <main class="container py-4" id="process">
         <h2>AI 在数模各环节的使用场景</h2>
         <p>每个环节 AI 都能帮忙，但核心判断由人决定</p>
-        <div class="card-grid">
-            <article class="card">
-                <h3>选题阶段</h3>
-                <p>用 AI 分析题目关键词、理解背景知识、查找参考文献，快速锁定选题方向。</p>
-            </article>
 
-            <article class="card">
-                <h3>提取约束</h3>
-                <p>用 AI 检查是否遗漏题目条件、是否错误理解变量或目标。</p>
-            </article>
+        <div class="row g-3">
+            <div class="col-12 col-md-6 col-lg-4">
+                <article class="card h-100">
+                    <div class="card-body">
+                        <span class="badge text-bg-primary mb-2">阶段 1</span>
+                        <h3 class="card-title">选题阶段</h3>
+                        <p class="card-text">用 AI 分析题目关键词、理解背景知识、查找参考文献，快速锁定选题方向。</p>
+                    </div>
+                </article>
+            </div>
 
-            <article class="card">
-                <h3>形成思路</h3>
-                <p>让 AI 对初步思路提出质疑，从反方角度找出逻辑漏洞和未经证明的假设。</p>
-            </article>
+            <div class="col-12 col-md-6 col-lg-4">
+                <article class="card h-100">
+                    <div class="card-body">
+                        <span class="badge text-bg-primary mb-2">阶段 2</span>
+                        <h3 class="card-title">提取约束</h3>
+                        <p class="card-text">用 AI 检查是否遗漏题目条件、是否错误理解变量或目标。</p>
+                    </div>
+                </article>
+            </div>
 
-            <article class="card">
-                <h3>模型确定</h3>
-                <p>让 AI 提供多种可行方案对比，由人选择最终模型，AI 不做决定。</p>
-            </article>
+            <div class="col-12 col-md-6 col-lg-4">
+                <article class="card h-100">
+                    <div class="card-body">
+                        <span class="badge text-bg-primary mb-2">阶段 3</span>
+                        <h3 class="card-title">形成思路</h3>
+                        <p class="card-text">让 AI 对初步思路提出质疑，从反方角度找出逻辑漏洞和未经证明的假设。</p>
+                    </div>
+                </article>
+            </div>
 
-            <article class="card">
-                <h3>代码生成</h3>
-                <p>AI生成 MATLAB 代码，要求说明每个模块对应的数学步骤。</p>
-            </article>
+            <div class="col-12 col-md-6 col-lg-4">
+                <article class="card h-100">
+                    <div class="card-body">
+                        <span class="badge text-bg-primary mb-2">阶段 4</span>
+                        <h3 class="card-title">模型确定</h3>
+                        <p class="card-text">让 AI 提供多种可行方案对比，由人选择最终模型，AI 不做决定。</p>
+                    </div>
+                </article>
+            </div>
 
-            <article class="card">
-                <h3>代码验证</h3>
-                <p>让 AI 做"模型—算法—代码"一致性检查，按格式输出问题和建议。</p>
-            </article>
+            <div class="col-12 col-md-6 col-lg-4">
+                <article class="card h-100">
+                    <div class="card-body">
+                        <span class="badge text-bg-primary mb-2">阶段 5</span>
+                        <h3 class="card-title">代码生成</h3>
+                        <p class="card-text">AI 生成 MATLAB 代码，要求说明每个模块对应的数学步骤。</p>
+                    </div>
+                </article>
+            </div>
 
-            <article class="card">
-                <h3>论文润色</h3>
-                <p>用 AI 检查论文与模型、代码、结果是否一致，不虚构内容，只指出问题。</p>
-            </article>
+            <div class="col-12 col-md-6 col-lg-4">
+                <article class="card h-100">
+                    <div class="card-body">
+                        <span class="badge text-bg-primary mb-2">阶段 6</span>
+                        <h3 class="card-title">代码验证</h3>
+                        <p class="card-text">让 AI 做"模型—算法—代码"一致性检查，按格式输出问题和建议。</p>
+                    </div>
+                </article>
+            </div>
+
+            <div class="col-12 col-md-6 col-lg-4">
+                <article class="card h-100">
+                    <div class="card-body">
+                        <span class="badge text-bg-primary mb-2">阶段 7</span>
+                        <h3 class="card-title">论文润色</h3>
+                        <p class="card-text">用 AI 检查论文与模型、代码、结果是否一致，不虚构内容，只指出问题。</p>
+                    </div>
+                </article>
+            </div>
         </div>
-    </section>
+    </main>
     
     <footer>
         <p>数模比赛 AI 使用指南 · 课程实践作品</p>
