@@ -10,7 +10,7 @@ body {
 }
 
 .site-header {
-    background: #2a4675;
+    background: #4e597c;
 }
 
 .nav-wrap {
@@ -25,9 +25,9 @@ body {
 }
 
 .logo {
-    color: #c8e42a;
+    color: #efef6b;
     text-decoration: none;
-    font-size: 18px;
+    font-size: clamp(16px, 2vw, 20px);
     font-weight: bold;
 }
 
@@ -52,6 +52,11 @@ section {
     padding: 32px 16px;
 }
 
+section h2 {
+    margin-top: 0;
+    font-size: clamp(20px, 4vw, 32px);
+}
+
 .card-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
@@ -72,3 +77,43 @@ footer {
     color: #666;
 }
 
+@media (min-width: 768px) {
+    .card-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 1024px) {
+    .card-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+@media (prefers-color-scheme: dark) {
+    body {
+        background: #1a1a2e;
+        color: #e0e0e0;
+    }
+    .card {
+        background: #2a2a3e;
+        border-color: #444;
+    }
+    .site-header {
+        background: #0d1b2a;
+    }
+    .main-nav a {
+        color: #c8d6e5;
+    }
+    .logo {
+        color: #fff;
+    }
+    footer {
+        background: #121212;
+        color: #999;
+    }
+    section h2 {
+        color: #e0e0e0;
+    }
+    .card h3 {
+        color: #6ea8fe;
+    }
+}
