@@ -1,43 +1,94 @@
 
-*{
-    box-sizing:border-box;
+* {
+    box-sizing: border-box;
 }
-body{
-    font-family:"Microsoft YaHei",sans-serif;
-    margin:0;
-    color:#333;
 
+body {
+    font-family: "Microsoft YaHei", sans-serif;
+    margin: 0;
+    color: #333;
 }
-.nav-wrap{
-    max-width:960px;
-    margin:0 auto;
-    padding:12px 16px;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    flex-wrap:wrap;
-    gap:8px;
+
+.site-header {
+    background: #2a4675;
 }
-.main-nav{
-    display:flex;
+
+.nav-wrap {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 12px 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.logo {
+    color: #c8e42a;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.main-nav {
+    display: flex;
     gap: 16px;
 }
-.main-nav a{text-decoration:none;
-    color:#0d6efd;
+
+.main-nav a {
+    color: #f6f6f9;
+    text-decoration: none;
 }
-.process-grid{
-    max-width:960px;
+
+.main-nav a:hover {
+    text-decoration: underline;
+}
+
+
+section {
+    max-width: 960px;
     margin: 0 auto;
-    padding:16px;
-    display:grid;
-    grid-template-columns:repeat(auto-fill,minmax(260px,1fr));
-    gap:16px;
+    padding: 32px 16px;
 }
-.process-card{
-    border:1px solid #dee2ed;
-    border-radius:8px;
-    padding:16px;
+
+section h2 {
+    margin-top: 0;
 }
-@media (min-width:992px){
-    .process-card{padding:24px;}
+
+.card-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+}
+
+.card {
+    border: 1px solid #9bc5ef;
+    border-radius: 8px;
+    padding: 16px;
+}
+
+footer {
+    background: #f8f9fa;
+    text-align: center;
+    padding: 20px;
+    margin-top: 32px;
+    color: #666;
+}
+
+
+@media (min-width: 768px) {
+    .card-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .rules-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+
+@media (min-width: 1024px) {
+    .card-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
 }
