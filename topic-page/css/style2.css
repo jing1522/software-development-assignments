@@ -117,3 +117,13 @@ footer {
         color: #6ea8fe;
     }
 }
+@media print{
+    .site-header,
+    footer,
+    .main-nav{
+        display:none;
+    }
+    .card-grid{             
+        grid-template-columns: 1fr;   
+    }
+}
