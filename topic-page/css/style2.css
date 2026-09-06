@@ -52,10 +52,6 @@ section {
     padding: 32px 16px;
 }
 
-section h2 {
-    margin-top: 0;
-}
-
 .card-grid {
     display: grid;
     grid-template-columns: 1fr;
