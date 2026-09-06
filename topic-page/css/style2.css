@@ -81,9 +81,7 @@ footer {
     .card-grid {
         grid-template-columns: repeat(2, 1fr);
     }
-    .rules-grid {
-        grid-template-columns: repeat(3, 1fr);
-    }
+   
 }
 
 
