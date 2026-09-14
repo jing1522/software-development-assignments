@@ -15,7 +15,26 @@
     </a-plane>
     <a-light type="ambient" color="#ffffff" intensity="0.5"></a-light>
 
-    <!-- 相机初始位：稍远处平视星系 -->
+        <!-- 主体：恒星（黄球星 + 点光源） -->
+    <a-sphere position="0 3 -11" radius="1.8" color="#ffd54f" material="emissive: #ffb300"></a-sphere>
+    <a-light type="point" position="0 3 -11" color="#ffd54f" intensity="1.1"></a-light>
+
+    <!-- 主体：行星 -->
+    <a-sphere position="-3.2 2.2 -7" radius="1" color="#4fc3f7"></a-sphere>
+
+    <!-- 主体：卫星（放进组实体，转组=卫星绕行星公转） -->
+    <a-entity position="-3.2 2.2 -7">
+      <a-box position="1.9 0.3 0" width="0.5" height="0.5" depth="0.5" color="#cfd8dc"></a-box>
+    </a-entity>
+
+    <!-- 主体：火箭（箭体 + 箭头 + 尾焰） -->
+    <a-cylinder position="3.4 1.7 -7" radius="0.3" height="1.8" color="#eceff1"></a-cylinder>
+    <a-sphere position="3.4 2.75 -7" radius="0.3" color="#e53935"></a-sphere>
+    <a-sphere position="3.4 0.62 -7" radius="0.22" color="#ff7043"></a-sphere>
+
+    <!-- 主体：陨石 -->
+    <a-sphere position="-1.4 0.35 -5" radius="0.35" color="#78909c"></a-sphere>
+    <a-sphere position="1.6 0.25 -4.5" radius="0.25" color="#607d8b"></a-sphere>
     <a-camera position="0 2 6"></a-camera>
   </a-scene>
 </body>
