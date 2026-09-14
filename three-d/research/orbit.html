@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>研究：OrbitControls 关键配置</title>
+  <style> body { margin: 0; } </style>
+</head>
+<body>
+  <script src="../libs/three.min.js"></script>
+  <script src="../libs/OrbitControls.js"></script>
+  <script>
+    const scene = new THREE.Scene();
+    scene.background = new THREE.Color(0x16213e);
+
+    const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 100);
+    camera.position.set(4, 3, 6);
+
+    const renderer = new THREE.WebGLRenderer({ antialias: true });
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    document.body.appendChild(renderer.domElement);
+
+    // 1) 引入方式：先引 libs/OrbitControls.js，再 new THREE.OrbitControls(相机, canvas)
+    const controls = new THREE.OrbitControls(camera, renderer.domElement);
+
+    // 2) 关键配置
+    controls.enableDamping = true;      // 惯性阻尼：松开鼠标后镜头还会滑一下
+    controls.dampingFactor = 0.06;      // 阻尼强度，越小越顺滑
+    controls.minDistance = 3;           // 滚轮缩放的最近距离
+    controls.maxDistance = 15;          // 最远距离
+    controls.enablePan = false;         // 关掉右键平移，只保留旋转 + 缩放
+    controls.target.set(0, 0.6, 0);     // 围绕展台中心转
+
+    scene.add(new THREE.AmbientLight(0xffffff, 0.4));
+    const dir = new THREE.DirectionalLight(0xffffff, 0.8);
+    dir.position.set(3, 6, 4);
+    scene.add(dir);
+
+    const stage = new THREE.Mesh(
+      new THREE.CylinderGeometry(2.2, 2.4, 0.3, 48),
+      new THREE.MeshStandardMaterial({ color: 0x37474f })
+    );
+    stage.position.y = -0.15;
+    scene.add(stage);
+
+    const box = new THREE.Mesh(
+      new THREE.BoxGeometry(1, 1, 1),
+      new THREE.MeshStandardMaterial({ color: 0x4fc3f7 })
+    );
+    box.position.y = 0.6;
+    scene.add(box);
+
+    // 3) 开了 damping 必须每帧 update()，否则阻尼不生效
+    const animate = () => {
+      requestAnimationFrame(animate);
+      controls.update();
+      renderer.render(scene, camera);
+    };
+    animate();
+
+    window.addEventListener('resize', () => {
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+    });
+  </script>
+</body>
+</html>

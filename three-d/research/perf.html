@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>研究：性能对比</title>
+  <style>
+    body { margin: 0; }
+    #hud { position: fixed; left: 8px; top: 8px; color: #00ff88;
+           font: 14px monospace; background: rgba(0, 0, 0, .65); padding: 6px 8px; }
+  </style>
+</head>
+<body>
+  <div id="hud">FPS: --</div>
+  <script src="../libs/three.min.js"></script>
+  <script>
+    // 地址栏参数控制对比条件，例如 perf.html?antialias=1&count=50
+    const params = new URLSearchParams(location.search);
+    const antialias = params.get('antialias') !== '0';
+    const count = Number(params.get('count') || 50);
+
+    const scene = new THREE.Scene();
+    scene.background = new THREE.Color(0x16213e);
+
+    const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 200);
+    camera.position.set(0, 4, 12);
+
+    const renderer = new THREE.WebGLRenderer({ antialias: antialias });
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    document.body.appendChild(renderer.domElement);
+
+    scene.add(new THREE.AmbientLight(0xffffff, 0.5));
+    const dir = new THREE.DirectionalLight(0xffffff, 0.8);
+    dir.position.set(3, 6, 4);
+    scene.add(dir);
+
+    // 按 count 生成物体：数量越多越吃性能
+    const geo = new THREE.BoxGeometry(0.6, 0.6, 0.6);
+    const items = new THREE.Group();
+    for (let i = 0; i < count; i++) {
+      const mesh = new THREE.Mesh(geo, new THREE.MeshStandardMaterial({ color: 0x4fc3f7 }));
+      const angle = (i / count) * Math.PI * 2;
+      mesh.position.set(Math.cos(angle) * 4, 1 + (i % 5) * 0.7, Math.sin(angle) * 4);
+      items.add(mesh);
+    }
+    scene.add(items);
+
+    // FPS：每秒统计一次帧数
+    let frames = 0;
+    let last = performance.now();
+    const hud = document.getElementById('hud');
+    const animate = () => {
+      requestAnimationFrame(animate);
+      items.rotation.y += 0.01;
+      renderer.render(scene, camera);
+      frames++;
+      const now = performance.now();
+      if (now - last >= 1000) {
+        hud.textContent = `FPS: ${Math.round(frames * 1000 / (now - last))}  |  antialias=${antialias}  物体=${count}`;
+        frames = 0;
+        last = now;
+      }
+    };
+    animate();
+  </script>
+</body>
+</html>
