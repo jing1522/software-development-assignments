@@ -45,9 +45,7 @@ const loadData = async () => {
     state.data = prep;
     state.plan = result.out[1];
     $('#sub-title').text(prep.title + ' · 数据来源：' + prep.source);
-    renderCards(prep);
-    renderBarChart(prep);
-    renderLineChart(prep);
+    renderAll(prep);
     setStatus('全部完成：两份数据并行加载用时 ' + result.ms.toFixed(0) + ' ms', 'alert-success');
     return true;
   } catch (error) {
@@ -135,6 +133,23 @@ const toggleFocus = (name) => {
       : '已联动：折线图只显示「' + state.focus + '」（再点一次恢复全部）。'
   );
 };
+
+const renderAll = (data) => {
+  state.focus = null;
+  $('#focus-hint').text('联动提示：点击柱状图里的柱子，折线图只显示那一类（再点一次恢复全部）。');
+  renderCards(data);
+  renderBarChart(data);
+  renderLineChart(data);
+};
+
+$('#source-switch').on('click', 'button', function () {
+  const usePlan = $(this).data('source') === 'plan';
+  $('#source-switch button').removeClass('btn-primary').addClass('btn-outline-primary');
+  $(this).removeClass('btn-outline-primary').addClass('btn-primary');
+  const data = usePlan ? state.plan : state.data;
+  $('#sub-title').text(data.title + ' · 数据来源：' + data.source);
+  renderAll(data);
+});
 
 const runTimingTest = async () => {
   const delay = Number($('#delay-input').val()) || 0;
