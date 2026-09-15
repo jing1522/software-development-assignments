@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="libs/bootstrap.min.css">
   <style>
     .chart-box { height: 360px; }
+    .chart-box-small { height: 240px; }
   </style>
 </head>
 <body class="bg-light">
@@ -54,6 +55,30 @@
             <button class="btn btn-sm btn-outline-primary" id="test-timing">重测一次</button>
           </div>
         </div>
+      </div>
+    </section>
+
+    <section class="card mt-4">
+      <div class="card-body">
+        <h2 class="h6">研究三：误导图表修复案例——被截断的纵轴</h2>
+        <p class="small mb-2">
+          新闻和广告里最常见的一种误导，是<b>把纵轴截掉一段</b>：数据一个没改，但“看起来的差距”被放大好几倍。
+          下面用课堂统一数据（图书馆借阅月报·文学类：320、301、334、390）演示同一份数据的两种画法——
+          左边把纵轴从 300 开始，390 看起来像 320 的三倍多；右边老老实实从 0 开始，四根柱子几乎一样高，
+          最高只比最低多约三成，这才是真实差距。<b>结论：柱状图的纵轴必须从 0 开始。</b>
+        </p>
+        <div class="row g-3">
+          <div class="col-md-6">
+            <h3 class="h6 text-danger">误导版：纵轴从 300 开始</h3>
+            <div class="chart-box-small"><canvas id="bad-chart"></canvas></div>
+          </div>
+          <div class="col-md-6">
+            <h3 class="h6 text-success">诚实版：纵轴从 0 开始</h3>
+            <div class="chart-box-small"><canvas id="good-chart"></canvas></div>
+          </div>
+        </div>
+        <p class="text-muted small mb-0">数据来源：课程统一数据集 data/books.json（图书馆借阅月报·文学类）</p>
+        <p class="text-muted small mb-0" id="books-status"></p>
       </div>
     </section>
   </div>

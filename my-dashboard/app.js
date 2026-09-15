@@ -142,6 +142,39 @@ const renderAll = (data) => {
   renderLineChart(data);
 };
 
+const drawMisleading = (id, counts, labels, min, color) => {
+  new Chart(document.querySelector(id), {
+    type: 'bar',
+    data: {
+      labels: labels,
+      datasets: [{ label: '文学类借阅量（册）', data: counts, backgroundColor: color }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        title: { display: true, text: '文学类每月借阅量（单位：册）' },
+        legend: { display: false }
+      },
+      scales: { y: { min: min } }
+    }
+  });
+};
+
+const loadBooks = async () => {
+  try {
+    const books = await loadJson('data/books.json', 0);
+    if (books.series.length === 0) {
+      return;
+    }
+    const counts = books.series[0].counts;
+    drawMisleading('#bad-chart', counts, books.months, 300, '#dc3545');
+    drawMisleading('#good-chart', counts, books.months, 0, '#198754');
+  } catch (error) {
+    $('#books-status').text('课堂统一数据加载失败：' + error.message);
+  }
+};
+
 $('#source-switch').on('click', 'button', function () {
   const usePlan = $(this).data('source') === 'plan';
   $('#source-switch button').removeClass('btn-primary').addClass('btn-outline-primary');
@@ -175,3 +208,5 @@ $('#test-timing').on('click', runTimingTest);
 loadData().then(ok => {
   if (ok) runTimingTest();
 });
+
+loadBooks();
