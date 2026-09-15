@@ -1,4 +1,4 @@
-const state = { data: null, plan: null };
+const state = { data: null, plan: null, focus: null };
 
 const DATA_URLS = ['data/prep.json', 'data/plan.json'];
 
@@ -80,6 +80,7 @@ let barChart = null;
 const renderBarChart = (data) => {
   if (barChart === null) {
     barChart = echarts.init(document.querySelector('#bar-chart'));
+    barChart.on('click', params => toggleFocus(params.seriesName));
   }
   barChart.setOption({
     title: { text: '各周各类备赛时长（单位：小时）', left: 'center' },
@@ -120,6 +121,19 @@ const renderLineChart = (data) => {
       }
     }
   });
+};
+
+const toggleFocus = (name) => {
+  state.focus = state.focus === name ? null : name;
+  lineChart.data.datasets.forEach(d => {
+    d.hidden = state.focus !== null && d.label !== state.focus;
+  });
+  lineChart.update();
+  $('#focus-hint').text(
+    state.focus === null
+      ? '联动提示：点击柱状图里的柱子，折线图只显示那一类（再点一次恢复全部）。'
+      : '已联动：折线图只显示「' + state.focus + '」（再点一次恢复全部）。'
+  );
 };
 
 const runTimingTest = async () => {
