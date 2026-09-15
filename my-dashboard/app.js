@@ -16,6 +16,7 @@ const loadData = async () => {
     $('#sub-title').text(data.title + ' · 数据来源：' + data.source);
     $('#status').hide();
     renderCards(data);
+    renderBarChart(data);
   } catch (error) {
     $('#status').text('加载失败：' + error.message).show();
   }
@@ -37,6 +38,26 @@ const renderCards = (data) => {
         </div>
       </div>
     `);
+  });
+};
+
+let barChart = null;
+
+const renderBarChart = (data) => {
+  if (barChart === null) {
+    barChart = echarts.init(document.querySelector('#bar-chart'));
+  }
+  barChart.setOption({
+    title: { text: '各周各类备赛时长（单位：小时）', left: 'center' },
+    tooltip: { trigger: 'axis' },
+    legend: { bottom: 0 },
+    xAxis: { data: data.weeks },
+    yAxis: { name: data.unit },
+    series: data.series.map(s => ({
+      name: s.category,
+      type: 'bar',
+      data: s.counts
+    }))
   });
 };
 
