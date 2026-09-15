@@ -1,25 +1,58 @@
-const state = { data: null };
+const state = { data: null, plan: null };
+
+const DATA_URLS = ['data/prep.json', 'data/plan.json'];
+
+const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
+
+const loadJson = async (url, delay) => {
+  const response = await fetch(url);
+  if (!response.ok) {
+    throw new Error('HTTP ' + response.status);
+  }
+  const data = await response.json();
+  await sleep(delay);
+  return data;
+};
+
+const loadSerial = async (urls, delay) => {
+  const start = performance.now();
+  const out = [];
+  for (const url of urls) {
+    out.push(await loadJson(url, delay));
+  }
+  return { out, ms: performance.now() - start };
+};
+
+const loadParallel = async (urls, delay) => {
+  const start = performance.now();
+  const out = await Promise.all(urls.map(url => loadJson(url, delay)));
+  return { out, ms: performance.now() - start };
+};
+
+const setStatus = (text, type) => {
+  $('#status').removeClass('alert-warning alert-success alert-danger').addClass(type).text(text).show();
+};
 
 const loadData = async () => {
-  $('#status').text('加载中...').show();
+  setStatus('加载中...', 'alert-warning');
   try {
-    const response = await fetch('data/prep.json');
-    if (!response.ok) {
-      throw new Error('HTTP ' + response.status);
+    const result = await loadParallel(DATA_URLS, 0);
+    const prep = result.out[0];
+    if (prep.series.length === 0) {
+      setStatus('暂无数据', 'alert-warning');
+      return false;
     }
-    const data = await response.json();
-    if (data.series.length === 0) {
-      $('#status').text('暂无数据').show();
-      return;
-    }
-    state.data = data;
-    $('#sub-title').text(data.title + ' · 数据来源：' + data.source);
-    $('#status').hide();
-    renderCards(data);
-    renderBarChart(data);
-    renderLineChart(data);
+    state.data = prep;
+    state.plan = result.out[1];
+    $('#sub-title').text(prep.title + ' · 数据来源：' + prep.source);
+    renderCards(prep);
+    renderBarChart(prep);
+    renderLineChart(prep);
+    setStatus('全部完成：两份数据并行加载用时 ' + result.ms.toFixed(0) + ' ms', 'alert-success');
+    return true;
   } catch (error) {
-    $('#status').text('加载失败：' + error.message).show();
+    setStatus('加载失败：' + error.message, 'alert-danger');
+    return false;
   }
 };
 
@@ -89,8 +122,27 @@ const renderLineChart = (data) => {
   });
 };
 
+const runTimingTest = async () => {
+  const delay = Number($('#delay-input').val()) || 0;
+  $('#timing').text('测试中...');
+  try {
+    const parallel = await loadParallel(DATA_URLS, delay);
+    const serial = await loadSerial(DATA_URLS, delay);
+    $('#timing').html(
+      '并行：<b>' + parallel.ms.toFixed(0) + ' ms</b> ｜ 串行：<b>' + serial.ms.toFixed(0) + ' ms</b>' +
+      ' ｜ 并行是串行的 <b>' + (parallel.ms / serial.ms * 100).toFixed(0) + '%</b>'
+    );
+  } catch (error) {
+    $('#timing').text('测试失败：' + error.message);
+  }
+};
+
 window.addEventListener('resize', () => {
   if (barChart) barChart.resize();
 });
 
-loadData();
+$('#test-timing').on('click', runTimingTest);
+
+loadData().then(ok => {
+  if (ok) runTimingTest();
+});

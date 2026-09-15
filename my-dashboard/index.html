@@ -29,6 +29,26 @@
         <div class="chart-box"><canvas id="line-chart"></canvas></div>
       </div>
     </section>
+
+    <section class="card mt-4">
+      <div class="card-body">
+        <h2 class="h6">研究一：两份 JSON 并行加载 vs 串行加载</h2>
+        <p class="mb-1" id="timing">并行：-- ms ｜ 串行：-- ms</p>
+        <p class="text-muted small mb-2">
+          并行用 Promise.all 让 prep.json 与 plan.json 同时上路；串行用 for + await 一个一个来。
+          本地服务器是毫秒级的、很难看出差别，所以可以填一个模拟延迟把差异放大——延迟对两种方式一视同仁。
+        </p>
+        <div class="row g-2 align-items-end">
+          <div class="col-auto">
+            <label class="form-label mb-1 small" for="delay-input">模拟每次请求延迟（毫秒）</label>
+            <input type="number" class="form-control form-control-sm" id="delay-input" value="800" min="0" step="100">
+          </div>
+          <div class="col-auto">
+            <button class="btn btn-sm btn-outline-primary" id="test-timing">重测一次</button>
+          </div>
+        </div>
+      </div>
+    </section>
   </div>
 
   <script src="libs/jquery-3.7.1.min.js"></script>
