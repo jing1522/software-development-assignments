@@ -42,10 +42,15 @@ geos.forEach((geo, i) => {
 });
 scene.add(items);
 
-// 动画：展台整体缓转
+// 动画：展台整体缓转 + 展品上下浮动（两个动画叠在一起）
 const animate = () => {
   requestAnimationFrame(animate);
   items.rotation.y += 0.005;
+  // 浮动：y = 基础高度 0.6 + sin(时间) 的小幅度；每个展品错开相位，不整齐划一
+  const t = performance.now() / 1000;
+  items.children.forEach((mesh, i) => {
+    mesh.position.y = 0.6 + Math.sin(t * 2 + i * 2) * 0.12;
+  });
   renderer.render(scene, camera);
 };
 animate();
