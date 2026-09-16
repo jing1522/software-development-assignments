@@ -121,6 +121,30 @@ const renderLineChart = (data) => {
   });
 };
 
+let pieChart = null;
+
+const renderPieChart = (data) => {
+  if (pieChart === null) {
+    pieChart = echarts.init(document.querySelector('#pie-chart'));
+  }
+  const rows = data.series.map(s => ({
+    name: s.category,
+    value: s.counts.reduce((sum, n) => sum + n, 0)
+  }));
+  pieChart.setOption({
+    tooltip: { trigger: 'item', formatter: (p) => p.name + '：' + p.value + ' 小时（' + p.percent.toFixed(1) + '%）' },
+    legend: { bottom: 0 },
+    series: [{
+      type: 'pie',
+      radius: '55%',
+      center: ['50%', '45%'],
+      data: rows,
+      label: { formatter: (p) => p.name + '\n' + p.percent.toFixed(1) + '%', fontSize: 11, lineHeight: 14, overflow: 'break', width: 76 },
+      labelLine: { length: 8, length2: 8 }
+    }]
+  });
+};
+
 const toggleFocus = (name) => {
   state.focus = state.focus === name ? null : name;
   lineChart.data.datasets.forEach(d => {
@@ -140,6 +164,7 @@ const renderAll = (data) => {
   renderCards(data);
   renderBarChart(data);
   renderLineChart(data);
+  renderPieChart(data);
 };
 
 const drawMisleading = (id, counts, labels, min, color) => {
@@ -201,6 +226,7 @@ const runTimingTest = async () => {
 
 window.addEventListener('resize', () => {
   if (barChart) barChart.resize();
+  if (pieChart) pieChart.resize();
 });
 
 $('#test-timing').on('click', runTimingTest);
