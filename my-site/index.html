@@ -87,9 +87,124 @@
     <section id="notes" class="container py-5">
       <h2 class="h4 mb-1">我的心得</h2>
       <p class="text-muted mb-4">比赛结束后回头看，用 AI 这件事我大概想清楚了这几条。</p>
+
+      <div class="row g-3 mb-4">
+        <div class="col-12 col-md-6">
+          <article class="card entry-card h-100">
+            <div class="card-body">
+              <p class="note-num mb-2">01</p>
+              <h3 class="h6">AI 是队友、智囊和工具，不是老师，也不是评委</h3>
+              <p class="card-text small text-muted mb-0">查资料、算数、出草稿、检查一致性交给它；思路怎么定、公式对不对、最后拍板，都得自己来。</p>
+            </div>
+          </article>
+        </div>
+        <div class="col-12 col-md-6">
+          <article class="card entry-card h-100">
+            <div class="card-body">
+              <p class="note-num mb-2">02</p>
+              <h3 class="h6">先把沟通规矩定好</h3>
+              <p class="card-text small text-muted mb-0">我习惯要求它先给结论再给理由、新题老题分开判断、发现致命问题直接指出——不迎合的答案才敢用。</p>
+            </div>
+          </article>
+        </div>
+        <div class="col-12 col-md-6">
+          <article class="card entry-card h-100">
+            <div class="card-body">
+              <p class="note-num mb-2">03</p>
+              <h3 class="h6">生成的代码只能当草稿</h3>
+              <p class="card-text small text-muted mb-0">一次只要一个片段、逐段排查；没跑通就不算数，能算出来就行，不追求理论上的完美。</p>
+            </div>
+          </article>
+        </div>
+        <div class="col-12 col-md-6">
+          <article class="card entry-card h-100">
+            <div class="card-body">
+              <p class="note-num mb-2">04</p>
+              <h3 class="h6">论文不堆术语</h3>
+              <p class="card-text small text-muted mb-0">润色只改语句、不改模型；不加没有实际作用的方法，也不用「我认为」这类主观表达。</p>
+            </div>
+          </article>
+        </div>
+      </div>
+
+      <p class="text-muted mb-5">一句话总结：<span class="note-num">AI 只是工具，不能完全依赖它。</span></p>
+
+      <h3 class="h5 mb-3">各阶段我是怎么用 AI 的</h3>
+      <div class="row g-3 mb-5">
+        <div class="col-12 col-md-6 col-lg-4">
+          <article class="card h-100">
+            <div class="card-body">
+              <span class="badge badge-mm mb-2">阶段 1</span>
+              <h4 class="h6">选题</h4>
+              <p class="card-text small text-muted mb-0">用 AI 分析题目关键词、理解背景知识、查找参考文献，帮我快速锁定方向。</p>
+            </div>
+          </article>
+        </div>
+        <div class="col-12 col-md-6 col-lg-4">
+          <article class="card h-100">
+            <div class="card-body">
+              <span class="badge badge-mm mb-2">阶段 2</span>
+              <h4 class="h6">提取约束</h4>
+              <p class="card-text small text-muted mb-0">用 AI 检查是否遗漏题目条件、是否错误理解变量或目标。</p>
+            </div>
+          </article>
+        </div>
+        <div class="col-12 col-md-6 col-lg-4">
+          <article class="card h-100">
+            <div class="card-body">
+              <span class="badge badge-mm mb-2">阶段 3</span>
+              <h4 class="h6">形成思路</h4>
+              <p class="card-text small text-muted mb-0">让 AI 对初步思路提出质疑，从反方角度找出逻辑漏洞和未经证明的假设。</p>
+            </div>
+          </article>
+        </div>
+        <div class="col-12 col-md-6 col-lg-4">
+          <article class="card h-100">
+            <div class="card-body">
+              <span class="badge badge-mm mb-2">阶段 4</span>
+              <h4 class="h6">模型确定</h4>
+              <p class="card-text small text-muted mb-0">让 AI 提供多种可行方案对比，最终模型由我来选，它不做决定。</p>
+            </div>
+          </article>
+        </div>
+        <div class="col-12 col-md-6 col-lg-4">
+          <article class="card h-100">
+            <div class="card-body">
+              <span class="badge badge-mm mb-2">阶段 5</span>
+              <h4 class="h6">代码生成</h4>
+              <p class="card-text small text-muted mb-0">让 AI 生成 MATLAB 代码，并要求说明每个模块对应的数学步骤。</p>
+            </div>
+          </article>
+        </div>
+        <div class="col-12 col-md-6 col-lg-4">
+          <article class="card h-100">
+            <div class="card-body">
+              <span class="badge badge-mm mb-2">阶段 6</span>
+              <h4 class="h6">代码验证</h4>
+              <p class="card-text small text-muted mb-0">让 AI 做「模型—算法—代码」一致性检查，只输出问题和建议。</p>
+            </div>
+          </article>
+        </div>
+        <div class="col-12 col-md-6 col-lg-4">
+          <article class="card h-100">
+            <div class="card-body">
+              <span class="badge badge-mm mb-2">阶段 7</span>
+              <h4 class="h6">论文润色</h4>
+              <p class="card-text small text-muted mb-0">用 AI 检查论文与模型、代码、结果是否一致，不虚构内容，只指出问题。</p>
+            </div>
+          </article>
+        </div>
+      </div>
+
       <div class="card">
-        <div class="card-body text-muted">
-          本区建设中：这里会放我总结的心得——几条经验，加上「各阶段我怎么做」的卡片和常看的参考链接。
+        <div class="card-body">
+          <h3 class="h6 mb-3">备赛时常看的几个链接</h3>
+          <ul class="mb-0">
+            <li><a href="http://www.mcm.edu.cn/" target="_blank" rel="noopener">全国大学生数学建模竞赛官网</a></li>
+            <li><a href="https://www.cmathc.org.cn/mcm/tz/602.html" target="_blank" rel="noopener">竞赛 AI 使用规定</a></li>
+            <li><a href="https://www.cmathc.org.cn/mcm/tz/303.html" target="_blank" rel="noopener">论文格式规范</a></li>
+            <li><a href="https://www.mathworks.com/help/matlab/" target="_blank" rel="noopener">MATLAB 代码文档</a></li>
+          </ul>
         </div>
       </div>
     </section>
