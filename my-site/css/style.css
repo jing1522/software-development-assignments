@@ -114,3 +114,10 @@ section[id] {
   color: var(--accent);
   font-weight: 600;
 }
+
+.sandbox-frame {
+  width: 100%;
+  height: 480px;
+  border: 0;
+  display: block;
+}

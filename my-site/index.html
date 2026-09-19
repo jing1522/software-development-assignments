@@ -211,12 +211,13 @@
 
     <section id="sandbox" class="container py-5">
       <h2 class="h4 mb-1">三维沙盘</h2>
-      <p class="text-muted mb-4">备赛间隙练手做的一个小三维场景，鼠标拖动就能转视角。</p>
-      <div class="card">
-        <div class="card-body text-muted">
-          本区建设中：这里会嵌入用 A-Frame 搭的小沙盘（地面、方块和沿路线飞行的小球）。
+      <p class="text-muted mb-4">备赛时用 A-Frame 练手搭的小沙盘：一个「扫描点」先向正右直线飞到大圆上的顶点，然后顺时针沿正六边形一路扫——扫到哪条边，哪条边就亮。鼠标拖动就能转视角。</p>
+      <div class="card overflow-hidden">
+        <div class="card-body p-0">
+          <iframe class="sandbox-frame" src="three-d/scene.html" title="三维沙盘" loading="lazy"></iframe>
         </div>
       </div>
+      <p class="text-muted small mt-2 mb-0">正六边形的六条边就是扫描路线；六个顶点都落在那条浅色大圆上，扫到哪条边、哪条边就亮。</p>
     </section>
 
     <section id="survey" class="container py-5">
