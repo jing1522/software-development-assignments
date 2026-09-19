@@ -42,13 +42,46 @@
   <main>
     <section id="prep" class="container py-5">
       <h2 class="h4 mb-1">我的准备</h2>
-      <p class="text-muted mb-4">备赛期间我把每周投入的时间都记了下来，下面是实际投入和当初计划的对比。</p>
-      <div class="card">
-        <div class="card-body text-muted">
-          本区建设中：这里会放备赛数据看板——三张统计卡片、柱状图 / 折线图 / 饼图，
-          还有「实际 / 计划」切换和点击柱子的图表联动。
+      <p class="text-muted mb-1">备赛期间我把每周投入的时间都记了下来，下面是实际投入和当初计划的对比。</p>
+      <p class="text-muted small mb-4" id="prep-sub"></p>
+
+      <div class="alert alert-warning" id="prep-status" style="display: none;"></div>
+
+      <div class="btn-group btn-group-sm mb-3" role="group" id="source-switch" aria-label="数据来源切换">
+        <button type="button" class="btn btn-accent" data-source="actual">实际备赛</button>
+        <button type="button" class="btn btn-outline-secondary" data-source="plan">计划备赛</button>
+      </div>
+
+      <div class="row g-3 mb-4" id="cards"></div>
+
+      <div class="row g-3">
+        <div class="col-12 col-lg-4">
+          <div class="card h-100">
+            <div class="card-body">
+              <h3 class="h6 mb-3">每周投入时长（柱状图）</h3>
+              <div id="bar-chart" class="chart-box"></div>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-lg-4">
+          <div class="card h-100">
+            <div class="card-body">
+              <h3 class="h6 mb-3">投入变化趋势（折线图）</h3>
+              <div class="chart-box"><canvas id="line-chart"></canvas></div>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-lg-4">
+          <div class="card h-100">
+            <div class="card-body">
+              <h3 class="h6 mb-3">各方向占比（饼图）</h3>
+              <div id="pie-chart" class="chart-box"></div>
+            </div>
+          </div>
         </div>
       </div>
+
+      <p class="text-muted small mt-3 mb-0" id="focus-hint">提示：点柱状图里的柱子，折线图会只显示那一类（再点一次恢复）。</p>
     </section>
 
     <section id="notes" class="container py-5">
@@ -89,6 +122,10 @@
     <div class="container">数模备赛小站 · 课程实践作品</div>
   </footer>
 
+  <script src="libs/jquery-3.7.1.min.js"></script>
   <script src="libs/bootstrap.bundle.min.js"></script>
+  <script src="libs/echarts.min.js"></script>
+  <script src="libs/chart.umd.js"></script>
+  <script src="js/dashboard.js"></script>
 </body>
 </html>
