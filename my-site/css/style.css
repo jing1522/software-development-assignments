@@ -2,7 +2,9 @@
   --navy: #0d2c54;
   --navy-2: #164a8a;
   --accent: #f97316;
-  --accent-dark: #d95f0a;
+  --accent-deep: #c2410c;
+  --accent-ink: #9a3412;
+  --ink-muted: #495057;
   --bg: #f4f6f8;
 }
 
@@ -67,20 +69,25 @@ body {
 }
 
 .btn-accent {
-  background-color: var(--accent);
-  border-color: var(--accent);
+  background-color: var(--accent-deep);
+  border-color: var(--accent-deep);
   color: #fff;
 }
 
 .btn-accent:hover,
 .btn-accent:focus {
-  background-color: var(--accent-dark);
-  border-color: var(--accent-dark);
+  background-color: var(--accent-ink);
+  border-color: var(--accent-ink);
   color: #fff;
 }
 
+.btn-outline-secondary {
+  --bs-btn-color: var(--ink-muted);
+  --bs-btn-border-color: var(--ink-muted);
+}
+
 .site-footer {
-  color: #6c757d;
+  color: var(--ink-muted);
   font-size: .875rem;
 }
 
@@ -104,14 +111,14 @@ section[id] {
 }
 
 .note-num {
-  color: var(--accent);
+  color: var(--accent-ink);
   font-weight: 700;
   letter-spacing: 1px;
 }
 
 .badge-mm {
   background-color: rgba(249, 115, 22, .12);
-  color: var(--accent);
+  color: var(--accent-ink);
   font-weight: 600;
 }
 
