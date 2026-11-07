@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>研究：点击交互</title>
+  <script src="../libs/aframe.min.js"></script>
+</head>
+<body>
+  <a-scene>
+    <a-sky color="#111827"></a-sky>
+    <a-plane position="0 0 -3" rotation="-90 0 0" width="20" height="20" color="#37474f"></a-plane>
+    <a-light type="ambient" color="#ffffff" intensity="0.55"></a-light>
+    <a-light type="directional" position="2 4 3" color="#ffffff" intensity="0.6"></a-light>
+
+    <!-- 展品：基座 + 宝珠（点它换颜色） -->
+    <a-cylinder position="0 0.6 -2" radius="0.7" height="1.2" color="#8d6e63"></a-cylinder>
+    <a-sphere position="0 1.6 -2" radius="0.55" color="#ffd54f"
+              material="side: double"
+              onclick="this.setAttribute('material', 'color', '#e53935')"></a-sphere>
+
+    <!-- 带准星的相机：cursor 从相机中心发射射线，命中就触发 click -->
+    <a-camera position="0 1.6 3">
+      <a-cursor></a-cursor>
+    </a-camera>
+  </a-scene>
+</body>
+</html>
