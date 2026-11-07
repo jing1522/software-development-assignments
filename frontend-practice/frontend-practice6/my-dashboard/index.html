@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>数模竞赛备赛看板</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="libs/bootstrap.min.css">
+  <style>
+    .chart-box { height: 360px; }
+    .chart-box-small { height: 240px; }
+  </style>
+</head>
+<body class="bg-light">
+  <div class="container py-4">
+    <h1 class="h3">数模竞赛备赛看板</h1>
+    <p class="text-muted" id="sub-title">正在读取备赛记录…</p>
+
+    <div class="alert alert-warning" id="status" style="display: none;"></div>
+
+    <div class="btn-group btn-group-sm mb-3" role="group" id="source-switch">
+      <button type="button" class="btn btn-primary" data-source="actual">实际备赛</button>
+      <button type="button" class="btn btn-outline-primary" data-source="plan">计划备赛</button>
+    </div>
+
+    <div class="row g-3 mb-4" id="cards"></div>
+
+    <section class="row g-3">
+      <div class="col-lg-4">
+        <h2 class="h5">各周备赛时长对比（ECharts柱状图）</h2>
+        <div id="bar-chart" class="chart-box"></div>
+      </div>
+      <div class="col-lg-4">
+        <h2 class="h5">备赛时长变化趋势（Chart.js折线图）</h2>
+        <div class="chart-box"><canvas id="line-chart"></canvas></div>
+      </div>
+      <div class="col-lg-4">
+        <h2 class="h5">各品类总时长占比（ECharts饼图）</h2>
+        <div id="pie-chart" class="chart-box"></div>
+      </div>
+    </section>
+
+    <p class="text-muted small mt-2 mb-0" id="focus-hint">联动提示：点击柱状图里的柱子，折线图只显示那一类（再点一次恢复全部）。</p>
+
+    <section class="card mt-4">
+      <div class="card-body">
+        <h2 class="h6">研究一：两份 JSON 并行加载 vs 串行加载</h2>
+        <p class="mb-1" id="timing">并行：-- ms ｜ 串行：-- ms</p>
+        <p class="text-muted small mb-2">
+          并行用 Promise.all 让 prep.json 与 plan.json 同时上路；串行用 for + await 一个一个来。
+          本地服务器是毫秒级的、很难看出差别，所以可以填一个模拟延迟把差异放大——延迟对两种方式一视同仁。
+        </p>
+        <div class="row g-2 align-items-end">
+          <div class="col-auto">
+            <label class="form-label mb-1 small" for="delay-input">模拟每次请求延迟（毫秒）</label>
+            <input type="number" class="form-control form-control-sm" id="delay-input" value="800" min="0" step="100">
+          </div>
+          <div class="col-auto">
+            <button class="btn btn-sm btn-outline-primary" id="test-timing">重测一次</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="card mt-4">
+      <div class="card-body">
+        <h2 class="h6">研究三：误导图表修复案例——被截断的纵轴</h2>
+        <p class="small mb-2">
+          新闻和广告里最常见的一种误导，是<b>把纵轴截掉一段</b>：数据一个没改，但“看起来的差距”被放大好几倍。
+          下面用课堂统一数据（图书馆借阅月报·文学类：320、301、334、390）演示同一份数据的两种画法——
+          左边把纵轴从 300 开始，390 看起来像 320 的三倍多；右边老老实实从 0 开始，四根柱子几乎一样高，
+          最高只比最低多约三成，这才是真实差距。<b>结论：柱状图的纵轴必须从 0 开始。</b>
+        </p>
+        <div class="row g-3">
+          <div class="col-md-6">
+            <h3 class="h6 text-danger">误导版：纵轴从 300 开始</h3>
+            <div class="chart-box-small"><canvas id="bad-chart"></canvas></div>
+          </div>
+          <div class="col-md-6">
+            <h3 class="h6 text-success">诚实版：纵轴从 0 开始</h3>
+            <div class="chart-box-small"><canvas id="good-chart"></canvas></div>
+          </div>
+        </div>
+        <p class="text-muted small mb-0">数据来源：课程统一数据集 data/books.json（图书馆借阅月报·文学类）</p>
+        <p class="text-muted small mb-0" id="books-status"></p>
+      </div>
+    </section>
+  </div>
+
+  <script src="libs/jquery-3.7.1.min.js"></script>
+  <script src="libs/bootstrap.bundle.min.js"></script>
+  <script src="libs/echarts.min.js"></script>
+  <script src="libs/chart.umd.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
