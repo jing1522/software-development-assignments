@@ -64,17 +64,23 @@ python -m http.server 8080
 
 ## 关于提交历史
 
-每个项目都是用它自己的仓库历史合并进来的，不是复制文件：
+每个项目都是用它自己的仓库历史合并进来的，不是复制文件。原仓库的提交都挂在对应合并提交的**第二个父提交**下面：
 
 ```bash
-# 查看某个项目被合并进来的位置和两次父提交
-git log --oneline --graph --all -- frontend-practice/frontend-practice5
+# 1) 找到某个项目的合并提交（消息里带 from commit '...'）
+git log --merges --oneline -1 -- frontend-practice/frontend-practice7
+# 例如：ab79acb Add 'frontend-practice/frontend-practice7/' from commit '7166a87...'
 
-# 只看某个项目的完整历史
-git log --oneline frontend-practice/frontend-practice7
+# 2) 从该合并提交的第二个父提交回溯，就是原仓库的完整历史
+git log --oneline ab79acb^2
+
+# 看整棵合并图
+git log --graph --oneline --all
 ```
 
-子树的合并提交形如 `Add 'frontend-practice/frontend-practice5/' from commit 'c12db09...'`，其中的 commit 就是合并时该仓库的最新提交。
+合并提交消息里 `from commit '...'` 后面的 SHA，就是合并时该仓库的最新提交。
+
+> 小提示：subtree 合并后，`git log -- 路径` 只匹配“该路径存在过”的提交，所以按目录过滤通常只看到合并提交本身，这是正常的；查完整历史请用上面的 `^2` 写法。
 
 ## 原仓库
 
