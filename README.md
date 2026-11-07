@@ -5,7 +5,7 @@
 - 前端练习 8 个：`frontend-practice/`
 - 综合项目 1 个：`projects/`
 
-合并前的总提交数：**107**；合并后本仓库共 **118** 个提交（9 个子树合并提交 + 初始化 + 1 个同步本地改动的提交）。
+合并前的总提交数：**110**；合并后本仓库共 **125** 个提交（9 个子树合并 + 2 次远端补同步 + 初始化 + 本地改动同步 + 文档提交）。
 
 ## 目录结构
 
@@ -30,9 +30,9 @@ software-development-assignments/
 
 | 目录 | 原仓库 | 内容 | 提交数 |
 | --- | --- | --- | --- |
-| `frontend-practice/frontend-practice-2` | [frontend-practice-2](https://github.com/jing1522/frontend-practice-2) | 第一个页面、个人主页、主题页（数模比赛的 AI 使用建议），HTML 与 Git 入门练习 | 20 |
-| `frontend-practice/frontend-practice2` | [frontend-practice2](https://github.com/jing1522/frontend-practice2) | 数模 AI 工具使用调研表单、课程反馈表单，练习表单语义、label 关联与纯 CSS 状态 | 9 |
-| `frontend-practice/frontend-practice3` | [frontend-practice3](https://github.com/jing1522/frontend-practice3) | 课程展示页（同一页面手写 CSS 与 Bootstrap 两版）、数模 AI 使用指南专题页 | 15 |
+| `frontend-practice/frontend-practice-2` | [frontend-practice](https://github.com/jing1522/frontend-practice)（原 `frontend-practice-2`，已改名） | 第一个页面、个人主页、主题页（数模比赛的 AI 使用建议），HTML 与 Git 入门练习 | 20 |
+| `frontend-practice/frontend-practice2` | [frontend-practice2](https://github.com/jing1522/frontend-practice2) | 数模 AI 工具使用调研表单、课程反馈表单，练习表单语义、label 关联与纯 CSS 状态 | 11 |
+| `frontend-practice/frontend-practice3` | [frontend-practice3](https://github.com/jing1522/frontend-practice3) | 课程展示页（同一页面手写 CSS 与 Bootstrap 两版）、数模 AI 使用指南专题页 | 16 |
 | `frontend-practice/frontend-practice4` | [frontend-practice4](https://github.com/jing1522/frontend-practice4) | 消费统计、成绩统计两个原生 JS 小工具，含数组排序与数据聚合 | 7 |
 | `frontend-practice/frontend-practice5` | [jing1522-frontend-practice5](https://github.com/jing1522/jing1522-frontend-practice5) | 我的课程表、任务清单，练习事件处理与 localStorage 持久化，另含 research 目录的探究版 | 17 |
 | `frontend-practice/frontend-practice6` | [frontend-practice6](https://github.com/jing1522/frontend-practice6) | 图书馆借阅数据看板（案例复现）、数模竞赛备赛看板（自主实践），jQuery + ECharts + Chart.js | 15 |
